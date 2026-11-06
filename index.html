@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f8fafc">
+  <meta name="description" content="PawLink helps lost pets find their way home and connects animals with loving families.">
+  <title>PawLink — Every pet deserves a way home</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+<body class="landing-page">
+  <header class="public-header">
+    <a class="brand" href="index.html" aria-label="PawLink home">
+      <span class="brand-mark" aria-hidden="true">🐾</span><span>Paw<span class="brand-accent">Link</span></span>
+    </a>
+    <nav class="public-nav" aria-label="Main navigation">
+      <a href="#how-it-works">How it works</a>
+      <a href="#community">Our community</a>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-button theme-toggle" type="button" aria-label="Switch to dark mode" title="Toggle color theme"><span data-theme-icon aria-hidden="true">☾</span></button>
+      <a class="button button-quiet header-login" href="login.html">Log In</a>
+      <a class="button button-primary header-signup" href="signup.html">Get Started <span aria-hidden="true">↗</span></a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero page-container" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="eyebrow-dot"></span> A community that brings them home</p>
+        <h1 id="hero-title">Report.<br>Search.<br><span class="title-highlight">Reunite.</span><br>Adopt.</h1>
+        <p class="hero-description">A missing pet is never just a pet. PawLink brings neighbors, shelters, and caring adopters together to make every happy ending possible.</p>
+        <div class="hero-actions">
+          <a class="button button-primary button-large" href="signup.html">Get Started <span aria-hidden="true">→</span></a>
+          <a class="button button-outline button-large" href="login.html">Log In</a>
+        </div>
+        <div class="social-proof">
+          <div class="avatar-stack" aria-hidden="true"><span>J</span><span>M</span><span>A</span><span>+</span></div>
+          <p><strong>Good people. One big community.</strong><br><span>Helping pets find their people.</span></p>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="photo-frame">
+          <img src="https://images.unsplash.com/photo-1551717743-49959800b1f6?auto=format&fit=crop&w=1200&q=85" alt="A happy dog enjoying a walk outside">
+          <div class="photo-label"><span class="label-icon" aria-hidden="true">♥</span><span><strong>Every paw has a place</strong><small>It starts with you.</small></span></div>
+        </div>
+        <div class="floating-note note-top"><span class="note-icon note-blue" aria-hidden="true">⌖</span><span><strong>Lost or found?</strong><small>Your neighbors can help.</small></span></div>
+        <div class="floating-note note-bottom"><span class="note-icon note-coral" aria-hidden="true">♡</span><span><strong>Meet your new best friend</strong><small>Adoption starts here.</small></span></div>
+        <span class="hero-sparkle sparkle-one" aria-hidden="true">✳</span><span class="hero-sparkle sparkle-two" aria-hidden="true">✳</span>
+      </div>
+    </section>
+
+    <section class="value-strip" id="how-it-works">
+      <div class="page-container value-grid">
+        <article class="value-item"><span class="value-icon value-icon-blue" aria-hidden="true">⌕</span><div><h2>Find a lost pet</h2><p>Share a report and put more eyes on the search.</p></div></article>
+        <article class="value-item"><span class="value-icon value-icon-peach" aria-hidden="true">♡</span><div><h2>Help them find home</h2><p>Connect good neighbors with pets who need them.</p></div></article>
+        <article class="value-item" id="community"><span class="value-icon value-icon-green" aria-hidden="true">✦</span><div><h2>Make a real difference</h2><p>Support local rescues and celebrate every reunion.</p></div></article>
+      </div>
+    </section>
+  </main>
+  <footer class="public-footer page-container"><a class="brand brand-small" href="index.html"><span class="brand-mark" aria-hidden="true">🐾</span><span>Paw<span class="brand-accent">Link</span></span></a><p>Made for the love between people and pets.</p><span>© <span data-current-year></span> PawLink</span></footer>
+</body>
+</html>

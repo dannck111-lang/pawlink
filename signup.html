@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f8fafc">
+  <title>Get Started — PawLink</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <main class="auth-layout">
+    <aside class="auth-aside">
+      <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">🐾</span><span>Paw<span class="brand-accent">Link</span></span></a>
+      <div class="auth-aside-copy"><h1>Good things happen when we connect.</h1><p>Join neighbors and pet lovers making it easier for every animal to find safety, care, and home.</p></div>
+      <div class="auth-aside-art" aria-hidden="true">🐾</div>
+    </aside>
+    <section class="auth-main" aria-labelledby="signup-title">
+      <div class="auth-card">
+        <a class="back-link" href="index.html">← Back to home</a>
+        <h2 id="signup-title">Join the PawLink community</h2>
+        <p class="auth-subtitle">Create your account and help make a difference for pets.</p>
+        <form data-auth-form="signup" novalidate>
+          <label class="form-field"><span>Your name</span><input type="text" name="name" autocomplete="name" placeholder="Alex Morgan" required></label>
+          <label class="form-field"><span>Email address</span><input type="email" name="email" autocomplete="email" placeholder="you@example.com" required></label>
+          <label class="form-field"><span>Password</span><input type="password" name="password" autocomplete="new-password" minlength="8" placeholder="At least 8 characters" required></label>
+          <p class="form-error" data-form-error role="alert" aria-live="polite"></p>
+          <button class="button button-primary auth-submit" type="submit">Create Account <span aria-hidden="true">→</span></button>
+        </form>
+        <p class="auth-footnote">Already have an account? <a href="login.html">Log in</a></p>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
