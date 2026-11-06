@@ -1,0 +1,54 @@
+/* Community reports page refinements */
+body:has(.feed-list) .app-content { width: min(900px, 100%); }
+body:has(.feed-list) .page-heading { position: relative; overflow: hidden; margin: -5px 0 20px; padding: 27px 30px 25px; border: 1px solid color-mix(in srgb, var(--primary) 15%, transparent); border-radius: 24px; background: radial-gradient(circle at 92% 18%, rgba(147,197,253,.28), transparent 28%), linear-gradient(120deg, var(--surface), var(--primary-soft)); }
+body:has(.feed-list) .page-heading::after { position: absolute; right: 28px; bottom: -34px; color: color-mix(in srgb, var(--primary) 12%, transparent); content: '🐾'; font-size: 105px; transform: rotate(-15deg); pointer-events: none; }
+body:has(.feed-list) .page-heading h1 { position: relative; z-index: 1; margin: 0; font-size: clamp(32px, 4vw, 42px); letter-spacing: -.055em; }
+body:has(.feed-list) .page-heading p:last-child { position: relative; z-index: 1; max-width: 470px; margin: 7px 0 0; color: var(--muted); font-size: 13px; }
+body:has(.feed-list) .composer-prompt { max-width: none; padding: 13px 15px; border: 1px solid var(--ui-line); border-radius: 18px; box-shadow: var(--ui-lift); }
+body:has(.feed-list) .composer-prompt .user-avatar { width: 42px; height: 42px; flex-basis: 42px; }
+body:has(.feed-list) .composer-prompt button { height: 45px; padding-inline: 17px; font-size: 12px; transition: background .18s ease, box-shadow .18s ease; }
+body:has(.feed-list) .composer-prompt button:hover { background: var(--primary-soft); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--primary) 22%, transparent); }
+.reports-toolbar { display: grid; gap: 12px; margin: 0 0 17px; padding: 15px; border: 1px solid var(--ui-line); border-radius: 17px; background: var(--surface); box-shadow: 0 5px 18px rgba(15,23,42,.035); }
+.reports-search { display: flex; height: 43px; align-items: center; gap: 10px; padding: 0 13px; border: 1px solid var(--border); border-radius: 13px; background: var(--page); color: var(--muted); }
+.reports-search > span { font-size: 21px; }
+.reports-search input { width: 100%; border: 0; outline: 0; background: transparent; color: var(--text); font-size: 12px; }
+.reports-filter-row { display: flex; flex-wrap: wrap; gap: 7px; }
+.report-filter { min-height: 33px; padding: 0 13px; border: 1px solid var(--border); border-radius: 999px; background: var(--surface); color: var(--muted); cursor: pointer; font-size: 10px; font-weight: 700; transition: .18s ease; }
+.report-filter:hover, .report-filter.is-active { border-color: var(--primary); background: var(--primary); color: #fff; }
+.reports-result-count { margin: 0; color: var(--muted); font-size: 10px; }
+body:has(.feed-list) .feed-list { max-width: none; gap: 15px; }
+body:has(.feed-list) .feed-card { padding: 19px; border: 1px solid var(--ui-line); border-radius: 20px; background: var(--surface); box-shadow: 0 5px 20px rgba(15,23,42,.035); }
+body:has(.feed-list) .feed-card[hidden] { display: none; }
+body:has(.feed-list) .feed-post-head { align-items: center; padding-bottom: 14px; }
+body:has(.feed-list) .feed-avatar { flex-basis: 43px; width: 43px; height: 43px; background: linear-gradient(145deg, var(--primary-soft), #dbeafe); color: var(--primary); }
+body:has(.feed-list) .feed-author strong { font-size: 12px; }
+body:has(.feed-list) .feed-author small { margin-top: 5px; font-size: 9px; }
+body:has(.feed-list) .feed-caption { margin: 16px 0; font-size: 13px; line-height: 1.7; }
+body:has(.feed-list) .feed-image { max-height: 450px; border-radius: 16px; }
+body:has(.feed-list) .feed-actions { min-height: 47px; margin-top: 12px; border-top: 1px solid var(--ui-line); border-bottom: 0; }
+body:has(.feed-list) .feed-actions > span { color: var(--muted); font-size: 10px; }
+body:has(.feed-list) .like-button { min-height: 34px; padding: 0 13px; border-radius: 999px; background: var(--surface-soft); }
+body:has(.feed-list) .like-button:hover, body:has(.feed-list) .like-button.liked { background: #fff0f2; }
+.community-reactions { display: flex; flex-wrap: wrap; gap: 7px; padding: 0 0 11px; border-bottom: 1px solid var(--ui-line); }
+.reaction-button { display: inline-flex; min-width: 51px; height: 31px; align-items: center; justify-content: center; gap: 6px; padding: 0 9px; border: 1px solid var(--border); border-radius: 999px; background: var(--surface); cursor: pointer; font-size: 13px; transition: transform .16s ease, border-color .16s ease, background .16s ease; }
+.reaction-button:hover { transform: translateY(-2px); border-color: var(--primary); }
+.reaction-button.is-active { border-color: color-mix(in srgb, var(--primary) 55%, var(--border)); background: var(--primary-soft); }
+.reaction-count { color: var(--muted); font-size: 10px; font-weight: 800; }
+body:has(.feed-list) .comment-list { gap: 7px; padding-top: 11px; }
+body:has(.feed-list) .comment-list p { padding: 10px 12px; border-radius: 12px; font-size: 11px; }
+body:has(.feed-list) .comment-form { margin-top: 12px; }
+body:has(.feed-list) .comment-form input { height: 41px; border-radius: 999px; padding-inline: 15px; }
+body:has(.feed-list) .comment-form .button { min-height: 41px; padding-inline: 16px; }
+body:has(.feed-list) .owner-actions .small-action { min-height: 29px; padding-inline: 11px; font-size: 9px; }
+@media (max-width: 600px) {
+  body:has(.feed-list) .page-heading { padding: 22px 19px; border-radius: 19px; }
+  body:has(.feed-list) .page-heading::after { right: 1px; font-size: 78px; }
+  .reports-toolbar { padding: 12px; }
+  .report-filter { min-height: 31px; padding-inline: 11px; }
+  body:has(.feed-list) .feed-card { padding: 14px; border-radius: 17px; }
+  body:has(.feed-list) .feed-post-head { align-items: flex-start; }
+  body:has(.feed-list) .owner-actions { margin-left: auto; }
+  body:has(.feed-list) .feed-image { max-height: 330px; }
+  body:has(.feed-list) .comment-form { align-items: stretch; }
+  body:has(.feed-list) .comment-form .button { padding-inline: 12px; }
+}
