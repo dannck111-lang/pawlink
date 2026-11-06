@@ -3,28 +3,35 @@
 
   const REVIEW_KEY = 'pawlinkProductReviews';
   const DEMO_REVIEW_VERSION_KEY = 'pawlinkDemoReviewsVersion';
-  const DEMO_REVIEW_VERSION = '1';
+  const DEMO_REVIEW_VERSION = '2';
   const BOWL_IMAGE = 'https://images.unsplash.com/photo-1589924691995-400dc9ecc119?auto=format&fit=crop&w=800&q=85';
   const IMAGE_FALLBACK = 'https://images.unsplash.com/photo-1582798358481-d199fb7347bb?auto=format&fit=crop&w=800&q=80';
-  const DEMO_REVIEWS = {
+  const DEMO_REVIEW_POOLS = {
     'prod-treats': [
-      { authorName: 'Maya R.', rating: 5, comment: 'Our pup loves these. They break into tiny pieces easily for training.', createdAt: Date.now() - 86400000 * 8 },
-      { authorName: 'Chris T.', rating: 4, comment: 'Good ingredients and no upset tummy. I wish the bag were a little bigger.', createdAt: Date.now() - 86400000 * 3 },
-      { authorName: 'Avery K.', rating: 5, comment: 'A new favorite reward in our house!', createdAt: Date.now() - 86400000 }
+      ['Maya R.', 'Our pup loves these. They break into tiny pieces easily for training.'],
+      ['Chris T.', 'Good ingredients and no upset tummy. I wish the bag were a little bigger.'],
+      ['Avery K.', 'A new favorite reward in our house!'],
+      ['Jordan P.', 'Great little treats for walks and practice.'],
+      ['Riley S.', 'They smell fresh and our picky dog is a fan.']
     ],
     'prod-toy': [
-      { authorName: 'Sam P.', rating: 4, comment: 'Bright colors and sturdy enough for our daily tug sessions.', createdAt: Date.now() - 86400000 * 6 },
-      { authorName: 'Nina L.', rating: 5, comment: 'Keeps our energetic dog busy and seems very well made.', createdAt: Date.now() - 86400000 * 2 }
+      ['Sam P.', 'Bright colors and sturdy enough for our daily tug sessions.'],
+      ['Nina L.', 'Keeps our energetic dog busy and seems very well made.'],
+      ['Morgan D.', 'Our two dogs take turns with this one. Fun and holding up well.'],
+      ['Taylor W.', 'A cheerful toy that has become part of our evening playtime.']
     ],
     'prod-bed': [
-      { authorName: 'Taylor J.', rating: 5, comment: 'Soft, cozy, and easy to wash. Our senior dog claimed it immediately.', createdAt: Date.now() - 86400000 * 5 },
-      { authorName: 'Robin M.', rating: 3, comment: 'Comfortable mat and a nice size. It is thinner than I expected.', createdAt: Date.now() - 86400000 * 2 },
-      { authorName: 'Dee W.', rating: 4, comment: 'A comfy spot that fits neatly beside the sofa.', createdAt: Date.now() - 3600000 * 20 }
+      ['Taylor J.', 'Soft, cozy, and easy to wash. Our senior dog claimed it immediately.'],
+      ['Robin M.', 'Comfortable mat and a nice size. It is thinner than I expected.'],
+      ['Dee W.', 'A comfy spot that fits neatly beside the sofa.'],
+      ['Casey B.', 'Our cat naps on it every afternoon. Simple and easy to clean.']
     ],
     'prod-bowl': [
-      { authorName: 'Jamie C.', rating: 5, comment: 'Looks lovely in our kitchen and feels nice and sturdy.', createdAt: Date.now() - 86400000 * 4 },
-      { authorName: 'Alex F.', rating: 4, comment: 'Easy to clean and just the right size for our cat.', createdAt: Date.now() - 86400000 },
-      { authorName: 'Morgan D.', rating: 3, comment: 'Cute everyday bowl. A little heavier than our old one, but works well.', createdAt: Date.now() - 3600000 * 11 }
+      ['Jamie C.', 'Looks lovely in our kitchen and feels nice and sturdy.'],
+      ['Alex F.', 'Easy to clean and just the right size for our cat.'],
+      ['Morgan D.', 'Cute everyday bowl. A little heavier than our old one, but works well.'],
+      ['Quinn R.', 'The bowl feels stable and is a nice size for daily meals.'],
+      ['Parker N.', 'Easy to rinse clean and looks great beside the food tin.']
     ]
   };
 
@@ -38,12 +45,25 @@
     try {
       if (localStorage.getItem(DEMO_REVIEW_VERSION_KEY) === DEMO_REVIEW_VERSION) return;
       const all = safeRead();
-      Object.entries(DEMO_REVIEWS).forEach(([productId, examples]) => {
-        if (!Array.isArray(all[productId]) || all[productId].length === 0) all[productId] = examples;
+      Object.entries(DEMO_REVIEW_POOLS).forEach(([productId, pool]) => {
+        const existing = Array.isArray(all[productId]) ? all[productId] : [];
+        // Refresh the earlier sample set once, while retaining reviews written by users.
+        const userReviews = existing.filter((review) => !review.isDemo && review.authorId !== 'pawlink-demo');
+        const shuffled = pool.slice().sort(() => Math.random() - 0.5);
+        const count = 2 + Math.floor(Math.random() * 3);
+        const demoReviews = shuffled.slice(0, count).map(([authorName, comment], index) => ({
+          authorId: 'pawlink-demo',
+          authorName,
+          rating: 3 + Math.floor(Math.random() * 3),
+          comment,
+          isDemo: true,
+          createdAt: Date.now() - (index + 1) * (86400000 + Math.floor(Math.random() * 86400000))
+        }));
+        all[productId] = [...userReviews, ...demoReviews];
       });
       localStorage.setItem(REVIEW_KEY, JSON.stringify(all));
       localStorage.setItem(DEMO_REVIEW_VERSION_KEY, DEMO_REVIEW_VERSION);
-    } catch (error) { /* Seed data is a convenience; shop reviewing still works without storage. */ }
+    } catch (error) { /* Demo content is optional; reviewing remains available if storage is unavailable. */ }
   }
   function userDetails() {
     try { return JSON.parse(localStorage.getItem('currentUser') || 'null') || {}; }
@@ -150,6 +170,7 @@
         notice.textContent = 'Could not save your review. Please try again.';
       }
     });
+
     window.addEventListener('storage', (event) => { if (event.key === REVIEW_KEY) renderReviews(); });
     renderReviews();
   }
