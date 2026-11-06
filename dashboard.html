@@ -1,45 +1,22 @@
 <!doctype html>
 <html lang="en" data-theme="light">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f8fafc">
-  <meta name="description" content="Your PawLink community is ready to help pets find their people.">
-  <title>Dashboard — PawLink</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="app.js" defer></script>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#f8fafc">
+  <meta name="description" content="Find your place in the PawLink community and meet pets who need a hand.">
+  <title>Home — PawLink</title><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="app-pages.css"><script src="app.js" defer></script>
 </head>
 <body class="app-shell">
-  <header class="mobile-topbar">
-    <a class="brand" href="dashboard.html"><span class="brand-mark" aria-hidden="true">🐾</span><span>Paw<span class="brand-accent">Link</span></span></a>
-    <div class="mobile-bar-actions"><button class="icon-button theme-toggle" type="button" aria-label="Switch to dark mode" title="Toggle color theme"><span data-theme-icon aria-hidden="true">☾</span></button><button class="icon-button menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="app-sidebar">☰</button></div>
-  </header>
+  <header class="mobile-topbar"><a class="brand" href="dashboard.html"><span class="brand-mark" aria-hidden="true">🐾</span><span>Paw<span class="brand-accent">Link</span></span></a><div class="mobile-bar-actions"><button class="icon-button theme-toggle" type="button"><span data-theme-icon aria-hidden="true">☾</span></button><button class="icon-button menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="app-sidebar">☰</button></div></header>
   <button class="drawer-backdrop" type="button" aria-label="Close navigation menu"></button>
-  <aside class="sidebar" id="app-sidebar" aria-label="App navigation">
-    <a class="brand" href="dashboard.html"><span class="brand-mark" aria-hidden="true">🐾</span><span>Paw<span class="brand-accent">Link</span></span></a>
-    <p class="sidebar-label">Workspace</p>
-    <nav class="sidebar-nav">
-      <a href="dashboard.html" aria-current="page"><span class="nav-icon" aria-hidden="true">⌂</span>Overview</a>
-      <a href="#lost-pets"><span class="nav-icon" aria-hidden="true">⌕</span>Lost &amp; Found</a>
-      <a href="#adoption"><span class="nav-icon" aria-hidden="true">♡</span>Adoption</a>
-      <a href="#community"><span class="nav-icon" aria-hidden="true">♧</span>Community</a>
-    </nav>
-    <div class="sidebar-bottom">
-      <button class="sidebar-action theme-toggle" type="button"><span class="nav-icon" data-theme-icon aria-hidden="true">☾</span>Toggle theme</button>
-      <div class="sidebar-user"><span class="user-avatar" data-user-initial aria-hidden="true">P</span><span><strong data-user-name>Pet lover</strong><small data-user-email></small></span></div>
-      <button class="sidebar-action" type="button" data-sign-out><span class="nav-icon" aria-hidden="true">↪</span>Log out</button>
-    </div>
-  </aside>
-  <main class="app-main">
-    <div class="app-content">
-      <header class="app-welcome"><div><h1>Welcome, <span data-user-name>friend</span>!</h1><p>Small acts of care can change a pet's whole story.</p></div><button class="icon-button theme-toggle" type="button" aria-label="Switch to dark mode" title="Toggle color theme"><span data-theme-icon aria-hidden="true">☾</span></button></header>
-      <section class="welcome-banner" aria-labelledby="banner-title"><div><h2 id="banner-title">Every happy ending starts with a helping hand.</h2><p>Report a missing pet, share a sighting, or meet an animal who's ready for a home.</p><a class="button" href="#lost-pets">Explore PawLink <span aria-hidden="true">→</span></a></div><span class="banner-paw" aria-hidden="true">🐾</span></section>
-      <section id="lost-pets" aria-labelledby="actions-title"><div class="section-heading"><h2 id="actions-title">Ways to make a difference</h2><span>Choose where to start</span></div><div class="action-grid">
-        <article class="action-card"><span class="value-icon value-icon-blue" aria-hidden="true">⌕</span><h3>Report a lost pet</h3><p>Help neighbors know who to look for.</p></article>
-        <article class="action-card"><span class="value-icon value-icon-peach" aria-hidden="true">♡</span><h3>Share a sighting</h3><p>A small clue can bring a family together.</p></article>
-        <article class="action-card" id="adoption"><span class="value-icon value-icon-green" aria-hidden="true">✦</span><h3>Explore adoption</h3><p>Meet pets looking for a place to call home.</p></article>
-      </div></section>
-    </div>
-  </main>
+  <aside class="sidebar" id="app-sidebar" aria-label="App navigation"><a class="brand" href="dashboard.html"><span class="brand-mark" aria-hidden="true">🐾</span><span>Paw<span class="brand-accent">Link</span></span></a><p class="sidebar-label">Workspace</p><nav class="sidebar-nav"><a href="dashboard.html" aria-current="page"><span class="nav-icon">⌂</span>Home</a><a href="search.html"><span class="nav-icon">⌕</span>Search pets</a><a href="adopt.html"><span class="nav-icon">♡</span>Adopt a pet</a><a href="profile.html"><span class="nav-icon">◉</span>My profile</a></nav><div class="sidebar-bottom"><button class="sidebar-action theme-toggle" type="button"><span class="nav-icon" data-theme-icon>☾</span>Toggle theme</button><div class="sidebar-user"><span class="user-avatar" data-user-initial aria-hidden="true">P</span><span><strong data-user-name>Pet lover</strong><small data-user-email></small></span></div><button class="sidebar-action" type="button" data-sign-out><span class="nav-icon">↪</span>Log out</button></div></aside>
+  <main class="app-main"><div class="app-content">
+    <section class="home-banner"><div class="home-banner-copy"><p class="home-eyebrow">A little help goes a long way</p><h1>YOUR COMMUNITY,<br>ONE PAW AT A TIME</h1><p>Every report, shared post, and loving home brings a pet closer to where they belong.</p><a class="button home-banner-button" href="search.html">Find your next step <span aria-hidden="true">→</span></a></div><span class="home-banner-paw" aria-hidden="true">🐾</span></section>
+    <section aria-labelledby="quick-actions-title"><div class="section-heading home-section-heading"><div><h2 id="quick-actions-title">What would you like to do?</h2><p>Choose an action and make a difference.</p></div></div><div class="quick-action-grid">
+      <a class="quick-action-card" href="search.html?category=lost-found"><span class="quick-action-icon icon-blue" aria-hidden="true">⌕</span><span><strong>Report lost or found</strong><small>Help reunite a pet with their family.</small></span><b aria-hidden="true">→</b></a>
+      <a class="quick-action-card" href="adopt.html"><span class="quick-action-icon icon-peach" aria-hidden="true">♡</span><span><strong>Adopt a pet</strong><small>Meet a new best friend.</small></span><b aria-hidden="true">→</b></a>
+      <a class="quick-action-card" href="search.html"><span class="quick-action-icon icon-green" aria-hidden="true">✦</span><span><strong>Explore the community</strong><small>See pets and neighbors near you.</small></span><b aria-hidden="true">→</b></a>
+    </div></section>
+    <section class="featured-section" aria-labelledby="featured-title"><div class="section-heading home-section-heading"><div><h2 id="featured-title">Featured pets</h2><p>Some lovely faces looking for a little help.</p></div><a class="text-link" href="adopt.html">See all pets <span aria-hidden="true">→</span></a></div><div class="featured-pet-row" data-featured-pets aria-live="polite"></div></section>
+  </div></main>
 </body>
 </html>
