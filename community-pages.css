@@ -1,96 +1,123 @@
-/* Community, seller, donation and profile UI */
-.composer-prompt { display:flex; align-items:center; gap:12px; padding:15px; margin-bottom:18px; border:1px solid var(--border); border-radius:15px; background:var(--surface); }
-.composer-prompt button { flex:1; height:42px; padding:0 14px; border:1px solid var(--border); border-radius:999px; background:var(--page); color:var(--muted); cursor:pointer; text-align:left; font-size:12px; }
-.feed-list { display:grid; gap:16px; max-width:760px; margin:0 auto; }
-.feed-card { padding:18px; border:1px solid var(--border); border-radius:16px; background:var(--surface); }
-.feed-post-head { display:flex; align-items:center; gap:10px; }
-.feed-avatar { display:grid; flex:0 0 39px; width:39px; height:39px; place-items:center; border-radius:50%; background:var(--primary-soft); color:var(--primary); font-weight:800; }
-.feed-author { flex:1; }
-.feed-author strong,.feed-author small { display:block; }
-.feed-author strong { font-size:12px; }
-.feed-author small { margin-top:4px; color:var(--muted); font-size:10px; }
-.owner-actions { display:flex; flex-wrap:wrap; gap:6px; }
-.small-action { display:inline-flex; align-items:center; justify-content:center; min-height:30px; padding:0 9px; border:1px solid var(--border); border-radius:8px; background:var(--surface); color:var(--primary); cursor:pointer; font-size:10px; font-weight:700; }
-.small-action.danger { color:#dc2626; }
-.feed-caption { margin:15px 0; font-size:13px; line-height:1.65; white-space:pre-wrap; overflow-wrap:anywhere; }
-.feed-image { display:block; width:100%; max-height:430px; object-fit:cover; border-radius:12px; background:var(--surface-soft); }
-.feed-actions { display:flex; align-items:center; gap:18px; padding:12px 0; color:var(--muted); font-size:11px; }
-.like-button { padding:0; border:0; background:transparent; color:var(--muted); cursor:pointer; font-size:12px; font-weight:700; }
-.like-button.liked { color:#e34f70; }
-.comment-list { display:grid; gap:6px; }
-.comment-list p { margin:0; padding:9px 11px; border-radius:9px; background:var(--surface-soft); font-size:11px; line-height:1.45; overflow-wrap:anywhere; }
-.comment-form { display:flex; gap:8px; margin-top:10px; }
-.comment-form input { flex:1; min-width:0; height:38px; padding:0 11px; border:1px solid var(--border); border-radius:9px; background:var(--surface); color:var(--text); font-size:11px; }
-.comment-form .button { min-height:38px; padding-inline:12px; font-size:10px; }
-.post-dialog textarea,.listing-form textarea { width:100%; padding:11px; border:1px solid var(--border); border-radius:9px; background:var(--surface); color:var(--text); font:inherit; font-size:12px; resize:vertical; }
-.post-dialog .form-field input[type=file] { height:auto; padding:10px; }
-.shop-heading { display:flex; justify-content:space-between; align-items:center; gap:20px; }
-.shop-layout { display:grid; grid-template-columns:minmax(0,1fr) 280px; gap:20px; align-items:start; }
-.product-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; }
-.product-card { overflow:hidden; border:1px solid var(--border); border-radius:15px; background:var(--surface); }
-.product-card > img { width:100%; height:155px; object-fit:cover; background:var(--surface-soft); }
-.product-card-body { padding:13px; }
-.product-category { color:var(--primary); font-size:9px; font-weight:800; text-transform:uppercase; letter-spacing:.1em; }
-.product-card h3 { margin:6px 0; font-family:'Manrope',sans-serif; font-size:14px; }
-.product-card p { min-height:32px; margin:0; color:var(--muted); font-size:10px; line-height:1.5; }
-.product-card-bottom { display:flex; align-items:center; justify-content:space-between; gap:8px; margin:12px 0 9px; }
-.product-card-bottom strong { font-size:14px; }
-.product-card-bottom .button { min-height:34px; padding-inline:10px; font-size:10px; }
-.product-card-body > small { color:var(--muted); font-size:9px; }
-.cart-panel { position:sticky; top:20px; padding:16px; border:1px solid var(--border); border-radius:15px; background:var(--surface); }
-.cart-title { display:flex; align-items:center; justify-content:space-between; }
-.cart-title h2,.profile-form h2 { margin:0; font-family:'Manrope',sans-serif; font-size:17px; }
-.cart-row { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:8px; padding:13px 0; border-bottom:1px solid var(--border); font-size:10px; }
-.cart-row > span strong,.cart-row > span small { display:block; }
-.cart-row > span small { margin-top:4px; color:var(--muted); }
-.cart-row > strong { grid-column:2; justify-self:end; }
-.qty-control { display:flex; align-items:center; gap:7px; }
-.qty-control button { width:23px; height:23px; border:1px solid var(--border); border-radius:6px; background:var(--surface); cursor:pointer; }
-.cart-total { display:flex; justify-content:space-between; padding:14px 0; font-size:13px; }
-.checkout-button { width:100%; border:0; cursor:pointer; }
-.muted-copy { color:var(--muted); font-size:11px; line-height:1.55; }
-.cart-panel .muted-copy { font-size:9px; }
-.seller-panel { margin-top:32px; padding:18px; border:1px solid var(--border); border-radius:15px; background:var(--surface); }
-.seller-panel .section-heading { margin:0 0 12px; }
-.seller-panel .section-heading h2 { margin:0; font-family:'Manrope',sans-serif; font-size:17px; }
-.seller-panel .button { min-height:38px; padding-inline:12px; font-size:11px; }
-.seller-row,.contribution-row { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 0; border-top:1px solid var(--border); }
-.seller-row strong,.seller-row small,.contribution-row strong,.contribution-row small { display:block; }
-.seller-row strong,.contribution-row strong { font-size:11px; }
-.seller-row small,.contribution-row small { margin-top:4px; color:var(--muted); font-size:10px; }
-.donation-content { max-width:850px; }
-.donation-hero { position:relative; overflow:hidden; padding:38px; border-radius:20px; background:linear-gradient(120deg,#1d4ed8,#5595f5); color:white; }
-.donation-hero .home-eyebrow { color:#bfdbfe; }
-.donation-hero h1 { max-width:590px; margin:0; font-family:'Manrope',sans-serif; font-size:clamp(30px,5vw,47px); letter-spacing:-.06em; line-height:1.08; }
-.donation-hero > p:last-child { max-width:560px; color:#e0ecff; font-size:13px; line-height:1.65; }
-.donation-heart { position:absolute; right:40px; top:25px; color:rgba(255,255,255,.22); font-size:130px; }
-.donation-panel { margin-top:20px; padding:24px; border:1px solid var(--border); border-radius:17px; background:var(--surface); }
-.donation-panel h2 { margin:0 0 16px; font-family:'Manrope',sans-serif; font-size:17px; }
-.donation-tiers { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; }
-.donation-tier { display:grid; gap:6px; min-height:90px; place-content:center; border:1px solid var(--border); border-radius:12px; background:var(--surface); cursor:pointer; text-align:center; }
-.donation-tier strong { font-family:'Manrope',sans-serif; font-size:22px; }
-.donation-tier span { color:var(--muted); font-size:9px; }
-.donation-tier.is-selected { border-color:var(--primary); background:var(--primary-soft); color:var(--primary); }
-.custom-donation { margin:16px 0; }
-.custom-donation input { width:100%; height:44px; padding:0 12px; border:1px solid var(--border); border-radius:9px; background:var(--surface); color:var(--text); }
-.donation-submit { width:100%; border:0; cursor:pointer; }
-.donation-note { text-align:center; }
-.profile-heading { display:flex; align-items:center; gap:15px; }
-.profile-heading .profile-heading-avatar { width:58px; height:58px; flex-basis:58px; font-size:20px; }
-.profile-heading h1 { margin:0; font-family:'Manrope',sans-serif; font-size:27px; }
-.profile-heading p { margin:3px 0 0; color:var(--muted); font-size:12px; }
-.profile-tabs { display:flex; gap:7px; margin:23px 0 15px; border-bottom:1px solid var(--border); }
-.profile-tab { padding:11px 14px; border:0; border-bottom:2px solid transparent; background:transparent; color:var(--muted); cursor:pointer; font-size:12px; font-weight:700; }
-.profile-tab.is-active { border-color:var(--primary); color:var(--primary); }
-.profile-panel { padding:20px; border:1px solid var(--border); border-radius:15px; background:var(--surface); }
-.profile-panel[hidden] { display:none; }
-.profile-form { max-width:670px; }
-.profile-form > .muted-copy { margin:6px 0 19px; }
-.form-row { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
-.profile-form .form-field { margin-bottom:12px; }
-.profile-form .form-field input { height:43px; }
-.profile-form .button { border:0; cursor:pointer; }
-.contribution-section + .contribution-section { margin-top:22px; }
-.contribution-section h3 { margin:0 0 9px; font-family:'Manrope',sans-serif; font-size:15px; }
-@media (max-width:920px) { .shop-layout { grid-template-columns:1fr; } .cart-panel { position:static; } }
-@media (max-width:680px) { .feed-card { padding:13px; } .feed-post-head { align-items:flex-start; } .owner-actions { gap:4px; } .small-action { min-height:27px; padding-inline:7px; } .shop-heading { align-items:flex-start; flex-direction:column; } .product-grid { grid-template-columns:1fr; } .product-card > img { height:190px; } .donation-hero { padding:27px 22px; } .donation-heart { right:10px; font-size:90px; } .donation-tiers { grid-template-columns:repeat(2,1fr); } .donation-panel { padding:17px; } .form-row { grid-template-columns:1fr; gap:0; } .profile-panel { padding:14px; } .seller-row,.contribution-row { align-items:flex-start; } }
+/* Refined community, marketplace and giving surfaces */
+:root {
+  --ui-radius: 20px;
+  --ui-pill: 999px;
+  --ui-line: color-mix(in srgb, var(--border) 76%, transparent);
+  --ui-lift: 0 14px 36px rgba(15, 23, 42, .07);
+}
+
+/* Replace square/default controls with consistent soft-pill actions. */
+.app-shell .button,
+.app-shell button:not(.menu-toggle):not(.icon-button):not(.dialog-x):not(.qty-control button):not(.like-button):not(.profile-tab):not(.filter-chip):not(.donation-tier),
+.app-shell .small-action {
+  border-radius: var(--ui-pill);
+  transition: transform .18s ease, box-shadow .18s ease, background-color .18s ease, border-color .18s ease;
+}
+.app-shell .button:hover,
+.app-shell .small-action:hover { transform: translateY(-2px); }
+.app-shell .button-primary { box-shadow: 0 8px 18px rgba(37, 99, 235, .18); }
+.app-shell .button-outline,
+.app-shell .small-action { background: var(--surface); }
+
+/* Community reports: editorial feed with a clean, structured activity table feel. */
+body:has(.feed-list) .page-heading { padding: 6px 0 15px; }
+body:has(.feed-list) .page-heading h1 { font-size: clamp(32px, 4vw, 43px); }
+body:has(.feed-list) .composer-prompt {
+  max-width: 760px;
+  margin: 0 auto 18px;
+  padding: 12px 15px;
+  border-radius: var(--ui-pill);
+  box-shadow: 0 7px 22px rgba(15, 23, 42, .04);
+}
+body:has(.feed-list) .composer-prompt button { height: 44px; border-color: transparent; background: var(--surface-soft); }
+body:has(.feed-list) .feed-list { gap: 13px; }
+body:has(.feed-list) .feed-card {
+  padding: 20px;
+  border-color: var(--ui-line);
+  border-radius: var(--ui-radius);
+  box-shadow: 0 5px 22px rgba(15, 23, 42, .035);
+  transition: box-shadow .2s ease, transform .2s ease;
+}
+body:has(.feed-list) .feed-card:hover { box-shadow: var(--ui-lift); transform: translateY(-2px); }
+body:has(.feed-list) .feed-post-head { padding-bottom: 13px; border-bottom: 1px solid var(--ui-line); }
+body:has(.feed-list) .feed-avatar { border: 3px solid var(--surface); box-shadow: 0 0 0 1px var(--border); }
+body:has(.feed-list) .feed-author small { display: inline-flex; width: fit-content; padding: 4px 9px; border-radius: var(--ui-pill); background: var(--primary-soft); color: var(--primary); }
+body:has(.feed-list) .feed-caption { font-size: 13px; }
+body:has(.feed-list) .feed-image { max-height: 390px; border-radius: 16px; }
+body:has(.feed-list) .feed-actions { justify-content: space-between; margin-top: 6px; border-top: 1px solid var(--ui-line); border-bottom: 1px solid var(--ui-line); }
+body:has(.feed-list) .like-button { min-height: 36px; padding: 0 14px; border-radius: var(--ui-pill); background: var(--surface-soft); }
+body:has(.feed-list) .like-button:hover, body:has(.feed-list) .like-button.liked { background: #fff0f2; }
+body:has(.feed-list) .comment-form input { height: 42px; border-radius: var(--ui-pill); background: var(--page); padding-inline: 15px; }
+body:has(.feed-list) .comment-form .button { min-height: 42px; padding-inline: 17px; }
+body:has(.feed-list) .small-action { min-height: 31px; padding: 0 13px; }
+
+/* Marketplace: table-like catalog rows, clear prices and compact seller data. */
+body:has(.product-grid) .shop-heading { padding: 6px 0 18px; }
+body:has(.product-grid) .shop-heading h1 { font-size: clamp(32px, 4vw, 43px); }
+body:has(.product-grid) .shop-layout { grid-template-columns: minmax(0, 1fr) 300px; gap: 20px; }
+body:has(.product-grid) .product-grid { display: flex; flex-direction: column; gap: 10px; }
+body:has(.product-grid) .product-card {
+  display: grid;
+  grid-template-columns: 118px minmax(0, 1fr);
+  min-height: 136px;
+  border-color: var(--ui-line);
+  border-radius: 17px;
+  box-shadow: 0 4px 18px rgba(15, 23, 42, .035);
+  transition: border-color .18s ease, box-shadow .18s ease, transform .18s ease;
+}
+body:has(.product-grid) .product-card:hover { border-color: color-mix(in srgb, var(--primary) 36%, var(--border)); box-shadow: var(--ui-lift); transform: translateY(-1px); }
+body:has(.product-grid) .product-card > img { width: 118px; height: 100%; min-height: 136px; object-fit: cover; }
+body:has(.product-grid) .product-card-body { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 4px 16px; padding: 15px 17px; }
+body:has(.product-grid) .product-category { grid-column: 1; width: fit-content; padding: 5px 9px; border-radius: var(--ui-pill); background: var(--primary-soft); }
+body:has(.product-grid) .product-card h3 { grid-column: 1; margin: 2px 0 0; font-size: 15px; }
+body:has(.product-grid) .product-card p { grid-column: 1; min-height: 0; }
+body:has(.product-grid) .product-card-bottom { grid-column: 2; grid-row: 1 / span 3; display: flex; flex-direction: column; align-items: flex-end; justify-content: center; margin: 0; }
+body:has(.product-grid) .product-card-bottom strong { font-family: 'Manrope', sans-serif; font-size: 19px; }
+body:has(.product-grid) .product-card-bottom .button { min-height: 38px; padding: 0 15px; white-space: nowrap; }
+body:has(.product-grid) .product-card-body > small { grid-column: 1; }
+body:has(.product-grid) .cart-panel { top: 24px; padding: 20px; border-radius: var(--ui-radius); box-shadow: var(--ui-lift); }
+body:has(.product-grid) .cart-title { padding-bottom: 12px; border-bottom: 1px solid var(--ui-line); }
+body:has(.product-grid) .cart-row { grid-template-columns: minmax(0, 1fr) auto; padding: 15px 0; }
+body:has(.product-grid) .qty-control button { width: 27px; height: 27px; border-radius: 50%; color: var(--primary); font-weight: 800; }
+body:has(.product-grid) .checkout-button { min-height: 47px; }
+body:has(.product-grid) .seller-panel { padding: 21px; border-radius: var(--ui-radius); box-shadow: 0 5px 22px rgba(15, 23, 42, .035); }
+body:has(.product-grid) .seller-row { padding: 14px 3px; }
+
+/* Donation: warm campaign panel and tactile, rounded amount selectors. */
+body:has(.donation-panel) .donation-hero { padding: clamp(30px, 5vw, 48px); border-radius: 26px; box-shadow: var(--ui-lift); }
+body:has(.donation-panel) .donation-heart { font-size: 150px; transform: rotate(12deg); }
+body:has(.donation-panel) .donation-panel { padding: clamp(19px, 4vw, 30px); border-radius: 22px; box-shadow: var(--ui-lift); }
+body:has(.donation-panel) .donation-tier {
+  min-height: 105px;
+  border-radius: 19px;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, .035);
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease, background-color .18s ease;
+}
+body:has(.donation-panel) .donation-tier:hover { transform: translateY(-3px); box-shadow: var(--ui-lift); }
+body:has(.donation-panel) .donation-tier.is-selected { border-width: 2px; box-shadow: 0 0 0 4px rgba(37, 99, 235, .1); }
+body:has(.donation-panel) .donation-tier strong { font-size: 25px; }
+body:has(.donation-panel) .donation-tier span { font-size: 10px; }
+body:has(.donation-panel) .custom-donation input { height: 48px; border-radius: 13px; padding-inline: 15px; }
+body:has(.donation-panel) .donation-submit { min-height: 51px; }
+body:has(.donation-panel) .donation-note { padding-top: 5px; }
+
+@media (max-width: 920px) {
+  body:has(.product-grid) .shop-layout { grid-template-columns: 1fr; }
+  body:has(.product-grid) .cart-panel { position: static; }
+}
+@media (max-width: 600px) {
+  body:has(.product-grid) .product-card { grid-template-columns: 86px minmax(0, 1fr); min-height: 125px; }
+  body:has(.product-grid) .product-card > img { width: 86px; min-height: 125px; }
+  body:has(.product-grid) .product-card-body { grid-template-columns: minmax(0, 1fr); gap: 4px; padding: 11px; }
+  body:has(.product-grid) .product-card-bottom { grid-column: 1; grid-row: auto; flex-direction: row; align-items: center; justify-content: space-between; margin-top: 7px; }
+  body:has(.product-grid) .product-card-bottom strong { font-size: 16px; }
+  body:has(.product-grid) .product-card-bottom .button { min-height: 34px; padding-inline: 12px; }
+  body:has(.product-grid) .product-card-body > small { display: none; }
+  body:has(.donation-panel) .donation-tiers { gap: 9px; }
+  body:has(.donation-panel) .donation-tier { min-height: 88px; border-radius: 17px; }
+  body:has(.feed-list) .feed-card { padding: 14px; }
+  body:has(.feed-list) .feed-post-head { flex-wrap: wrap; }
+}
+@media (prefers-reduced-motion: reduce) {
+  body:has(.feed-list) *, body:has(.product-grid) *, body:has(.donation-panel) * { transition-duration: .01ms !important; }
+}
