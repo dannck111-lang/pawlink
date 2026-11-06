@@ -2,8 +2,31 @@
   'use strict';
 
   const REVIEW_KEY = 'pawlinkProductReviews';
+  const DEMO_REVIEW_VERSION_KEY = 'pawlinkDemoReviewsVersion';
+  const DEMO_REVIEW_VERSION = '1';
   const BOWL_IMAGE = 'https://images.unsplash.com/photo-1589924691995-400dc9ecc119?auto=format&fit=crop&w=800&q=85';
   const IMAGE_FALLBACK = 'https://images.unsplash.com/photo-1582798358481-d199fb7347bb?auto=format&fit=crop&w=800&q=80';
+  const DEMO_REVIEWS = {
+    'prod-treats': [
+      { authorName: 'Maya R.', rating: 5, comment: 'Our pup loves these. They break into tiny pieces easily for training.', createdAt: Date.now() - 86400000 * 8 },
+      { authorName: 'Chris T.', rating: 4, comment: 'Good ingredients and no upset tummy. I wish the bag were a little bigger.', createdAt: Date.now() - 86400000 * 3 },
+      { authorName: 'Avery K.', rating: 5, comment: 'A new favorite reward in our house!', createdAt: Date.now() - 86400000 }
+    ],
+    'prod-toy': [
+      { authorName: 'Sam P.', rating: 4, comment: 'Bright colors and sturdy enough for our daily tug sessions.', createdAt: Date.now() - 86400000 * 6 },
+      { authorName: 'Nina L.', rating: 5, comment: 'Keeps our energetic dog busy and seems very well made.', createdAt: Date.now() - 86400000 * 2 }
+    ],
+    'prod-bed': [
+      { authorName: 'Taylor J.', rating: 5, comment: 'Soft, cozy, and easy to wash. Our senior dog claimed it immediately.', createdAt: Date.now() - 86400000 * 5 },
+      { authorName: 'Robin M.', rating: 3, comment: 'Comfortable mat and a nice size. It is thinner than I expected.', createdAt: Date.now() - 86400000 * 2 },
+      { authorName: 'Dee W.', rating: 4, comment: 'A comfy spot that fits neatly beside the sofa.', createdAt: Date.now() - 3600000 * 20 }
+    ],
+    'prod-bowl': [
+      { authorName: 'Jamie C.', rating: 5, comment: 'Looks lovely in our kitchen and feels nice and sturdy.', createdAt: Date.now() - 86400000 * 4 },
+      { authorName: 'Alex F.', rating: 4, comment: 'Easy to clean and just the right size for our cat.', createdAt: Date.now() - 86400000 },
+      { authorName: 'Morgan D.', rating: 3, comment: 'Cute everyday bowl. A little heavier than our old one, but works well.', createdAt: Date.now() - 3600000 * 11 }
+    ]
+  };
 
   function safeRead() {
     try {
@@ -11,19 +34,27 @@
       return value && typeof value === 'object' && !Array.isArray(value) ? value : {};
     } catch (error) { return {}; }
   }
-
+  function seedDemoReviews() {
+    try {
+      if (localStorage.getItem(DEMO_REVIEW_VERSION_KEY) === DEMO_REVIEW_VERSION) return;
+      const all = safeRead();
+      Object.entries(DEMO_REVIEWS).forEach(([productId, examples]) => {
+        if (!Array.isArray(all[productId]) || all[productId].length === 0) all[productId] = examples;
+      });
+      localStorage.setItem(REVIEW_KEY, JSON.stringify(all));
+      localStorage.setItem(DEMO_REVIEW_VERSION_KEY, DEMO_REVIEW_VERSION);
+    } catch (error) { /* Seed data is a convenience; shop reviewing still works without storage. */ }
+  }
   function userDetails() {
     try { return JSON.parse(localStorage.getItem('currentUser') || 'null') || {}; }
     catch (error) { return {}; }
   }
-
   function node(tag, className, text) {
     const element = document.createElement(tag);
     if (className) element.className = className;
     if (text !== undefined) element.textContent = text;
     return element;
   }
-
   function starText(value) { return `${'★'.repeat(value)}${'☆'.repeat(5 - value)}`; }
 
   function hydrateCard(card) {
@@ -119,7 +150,6 @@
         notice.textContent = 'Could not save your review. Please try again.';
       }
     });
-
     window.addEventListener('storage', (event) => { if (event.key === REVIEW_KEY) renderReviews(); });
     renderReviews();
   }
@@ -131,7 +161,7 @@
   }
 
   document.addEventListener('DOMContentLoaded', () => {
-    // Correct the previously saved bowl URL as well as the seed URL, then let the shop redraw.
+    seedDemoReviews();
     try {
       const products = JSON.parse(localStorage.getItem('pawlinkProducts') || '[]');
       let changed = false;
