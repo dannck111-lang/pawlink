@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="onboarding.css">
   <script src="app.js" defer></script>
+  <script src="signup-verification.js?v=1" defer></script>
 </head>
 <body>
   <main class="auth-layout">
@@ -31,8 +32,10 @@
             <label class="form-field"><span>Age</span><input type="number" name="age" min="13" max="120" inputmode="numeric" placeholder="Your age" required></label>
             <label class="form-field"><span>City / Area</span><input type="text" name="city" autocomplete="address-level2" placeholder="Your neighborhood" required></label>
           </div>
-          <label class="form-field"><span>I'm here to...</span><select name="primaryInterest" required><option value="" disabled selected>Choose what interests you</option><option value="adoption">Explore adoption</option><option value="lost-found">Help with lost &amp; found pets</option><option value="volunteer">Volunteer with local rescues</option><option value="community">Connect with my pet community</option></select></label>
+          <label class="form-field"><span>I'm here to...</span><select name="primaryInterest" required><option value="" disabled selected>Choose what interests you</option><option value="adoption">Adopt a pet</option><option value="lost-found">Report a lost or found pet</option><option value="community">Connect with the community</option><option value="shop">Shop or sell pet items</option><option value="donate">Support local pets</option></select></label>
           <label class="form-field"><span>Password</span><input type="password" name="password" autocomplete="new-password" minlength="8" placeholder="At least 8 characters" required></label>
+          <label class="form-field"><span>Valid ID image <b aria-hidden="true">(required)</b></span><input type="file" name="idVerification" accept="image/jpeg,image/png,image/webp" required aria-describedby="id-verification-note id-verification-error"><small id="id-verification-note">Upload a clear image of a valid ID (JPG, PNG, or WebP; up to 5 MB). This demo checks the file only—it does not send or verify your ID. Do not upload sensitive ID documents until secure verification is available.</small></label>
+          <p class="form-error" data-id-verification-error id="id-verification-error" role="alert" aria-live="polite"></p>
           <p class="form-error" data-form-error role="alert" aria-live="polite"></p>
           <button class="button button-primary auth-submit" type="submit">Create Account <span aria-hidden="true">→</span></button>
         </form>
