@@ -1,176 +1,120 @@
-/* Refined community, marketplace and giving surfaces */
-:root {
-  --ui-radius: 20px;
-  --ui-pill: 999px;
-  --ui-line: color-mix(in srgb, var(--border) 76%, transparent);
-  --ui-lift: 0 14px 36px rgba(15, 23, 42, .07);
-}
-
-/* Replace square/default controls with consistent soft-pill actions. */
-.app-shell .button,
-.app-shell button:not(.menu-toggle):not(.icon-button):not(.dialog-x):not(.qty-control button):not(.like-button):not(.profile-tab):not(.filter-chip):not(.donation-tier),
-.app-shell .small-action {
-  border-radius: var(--ui-pill);
-  transition: transform .18s ease, box-shadow .18s ease, background-color .18s ease, border-color .18s ease;
-}
-.app-shell .button:hover,
-.app-shell .small-action:hover { transform: translateY(-2px); }
-.app-shell .button-primary { box-shadow: 0 8px 18px rgba(37, 99, 235, .18); }
-.app-shell .button-outline,
-.app-shell .small-action { background: var(--surface); }
-
-/* Community reports: editorial feed with a clean, structured activity table feel. */
-body:has(.feed-list) .page-heading { padding: 6px 0 15px; }
-body:has(.feed-list) .page-heading h1 { font-size: clamp(32px, 4vw, 43px); }
-body:has(.feed-list) .composer-prompt {
-  max-width: 760px;
-  margin: 0 auto 18px;
-  padding: 12px 15px;
-  border-radius: var(--ui-pill);
-  box-shadow: 0 7px 22px rgba(15, 23, 42, .04);
-}
-body:has(.feed-list) .composer-prompt button { height: 44px; border-color: transparent; background: var(--surface-soft); }
-body:has(.feed-list) .feed-list { gap: 13px; }
-body:has(.feed-list) .feed-card {
-  padding: 20px;
-  border-color: var(--ui-line);
-  border-radius: var(--ui-radius);
-  box-shadow: 0 5px 22px rgba(15, 23, 42, .035);
-  transition: box-shadow .2s ease, transform .2s ease;
-}
-body:has(.feed-list) .feed-card:hover { box-shadow: var(--ui-lift); transform: translateY(-2px); }
-body:has(.feed-list) .feed-post-head { padding-bottom: 13px; border-bottom: 1px solid var(--ui-line); }
-body:has(.feed-list) .feed-avatar { border: 3px solid var(--surface); box-shadow: 0 0 0 1px var(--border); }
-body:has(.feed-list) .feed-author small { display: inline-flex; width: fit-content; padding: 4px 9px; border-radius: var(--ui-pill); background: var(--primary-soft); color: var(--primary); }
-body:has(.feed-list) .feed-caption { font-size: 13px; }
-body:has(.feed-list) .feed-image { max-height: 390px; border-radius: 16px; }
-body:has(.feed-list) .feed-actions { justify-content: space-between; margin-top: 6px; border-top: 1px solid var(--ui-line); border-bottom: 1px solid var(--ui-line); }
-body:has(.feed-list) .like-button { min-height: 36px; padding: 0 14px; border-radius: var(--ui-pill); background: var(--surface-soft); }
-body:has(.feed-list) .like-button:hover, body:has(.feed-list) .like-button.liked { background: #fff0f2; }
-body:has(.feed-list) .comment-form input { height: 42px; border-radius: var(--ui-pill); background: var(--page); padding-inline: 15px; }
-body:has(.feed-list) .comment-form .button { min-height: 42px; padding-inline: 17px; }
-body:has(.feed-list) .small-action { min-height: 31px; padding: 0 13px; }
-
-/* Marketplace: accessible table-style product rows with clear column headers. */
-body:has(.product-grid) .shop-heading { padding: 6px 0 18px; }
-body:has(.product-grid) .shop-heading h1 { font-size: clamp(32px, 4vw, 43px); }
-body:has(.product-grid) .shop-layout { grid-template-columns: minmax(0, 1fr) 300px; gap: 20px; }
-body:has(.product-grid) .shop-layout > section { min-width: 0; }
+/* Marketplace listings: switch from compact table rows to browsable product cards. */
 body:has(.product-grid) .product-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: 0;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 230px), 1fr));
+  align-items: stretch;
+  gap: 16px;
+  overflow: visible;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+body:has(.product-grid) .product-grid::before { display: none; }
+body:has(.product-grid) .product-card {
+  display: flex;
+  min-width: 0;
+  min-height: 0;
+  flex-direction: column;
   overflow: hidden;
   border: 1px solid var(--ui-line);
   border-radius: 18px;
   background: var(--surface);
-  box-shadow: 0 5px 22px rgba(15, 23, 42, .035);
+  box-shadow: 0 5px 22px rgba(15, 23, 42, .045);
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
 }
-body:has(.product-grid) .product-grid::before {
-  display: grid;
-  grid-template-columns: 72px minmax(0, 1fr) 152px;
-  align-items: center;
-  min-height: 42px;
-  padding: 0 15px;
-  border-bottom: 1px solid var(--ui-line);
-  background: var(--surface-soft);
-  color: var(--muted);
-  content: 'ITEM|PRODUCT DETAILS|PRICE & ACTION';
-  font-size: 9px;
-  font-weight: 800;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  white-space: pre;
-}
-body:has(.product-grid) .product-card {
-  display: grid;
-  grid-template-columns: 72px minmax(0, 1fr) 152px;
-  align-items: center;
-  min-width: 0;
-  min-height: 112px;
-  border: 0;
-  border-bottom: 1px solid var(--ui-line);
-  border-radius: 0;
+body:has(.product-grid) .product-card:last-child { border-bottom: 1px solid var(--ui-line); }
+body:has(.product-grid) .product-card:hover {
+  transform: translateY(-3px);
+  border-color: color-mix(in srgb, var(--primary) 36%, var(--border));
   background: var(--surface);
-  box-shadow: none;
-  transition: background-color .16s ease;
+  box-shadow: var(--ui-lift);
 }
-body:has(.product-grid) .product-card:last-child { border-bottom: 0; }
-body:has(.product-grid) .product-card:hover { transform: none; background: var(--primary-soft); box-shadow: none; }
 body:has(.product-grid) .product-card > img {
-  width: 52px;
-  height: 52px;
+  display: block;
+  width: 100%;
+  height: 190px;
   min-height: 0;
-  margin-left: 14px;
-  border-radius: 13px;
+  margin: 0;
+  border-radius: 0;
+  background: var(--surface-soft);
   object-fit: cover;
 }
 body:has(.product-grid) .product-card-body {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 152px;
-  grid-template-rows: auto auto auto auto;
-  align-items: center;
-  gap: 3px 12px;
-  min-width: 0;
-  padding: 13px 15px 13px 8px;
-}
-body:has(.product-grid) .product-category { grid-column: 1; grid-row: 1; width: fit-content; padding: 4px 9px; border-radius: var(--ui-pill); background: var(--primary-soft); font-size: 8px; }
-body:has(.product-grid) .product-card h3 { grid-column: 1; grid-row: 2; overflow: hidden; margin: 1px 0; font-size: 13px; text-overflow: ellipsis; white-space: nowrap; }
-body:has(.product-grid) .product-card p { grid-column: 1; grid-row: 3; min-height: 0; overflow: hidden; font-size: 10px; text-overflow: ellipsis; white-space: nowrap; }
-body:has(.product-grid) .product-card-body > small { grid-column: 1; grid-row: 4; overflow: hidden; font-size: 9px; text-overflow: ellipsis; white-space: nowrap; }
-body:has(.product-grid) .product-card-bottom {
-  grid-column: 2;
-  grid-row: 1 / span 4;
   display: flex;
+  min-width: 0;
+  flex: 1;
   flex-direction: column;
-  align-items: flex-end;
-  justify-content: center;
-  gap: 9px;
+  align-items: stretch;
+  gap: 8px;
+  padding: 15px;
+}
+body:has(.product-grid) .product-category {
+  width: fit-content;
+  padding: 5px 9px;
+  border-radius: var(--ui-pill);
+  background: var(--primary-soft);
+  font-size: 9px;
+}
+body:has(.product-grid) .product-card h3 {
+  overflow: visible;
   margin: 0;
+  font-size: 15px;
+  line-height: 1.35;
+  text-overflow: clip;
+  white-space: normal;
 }
-body:has(.product-grid) .product-card-bottom strong { font-family: 'Manrope', sans-serif; font-size: 16px; }
-body:has(.product-grid) .product-card-bottom .button { min-height: 34px; padding: 0 14px; font-size: 10px; white-space: nowrap; }
-body:has(.product-grid) .cart-panel { position: sticky; top: 24px; padding: 20px; border-radius: var(--ui-radius); box-shadow: var(--ui-lift); }
-body:has(.product-grid) .cart-title { padding-bottom: 12px; border-bottom: 1px solid var(--ui-line); }
-body:has(.product-grid) .cart-row { grid-template-columns: minmax(0, 1fr) auto; padding: 15px 0; }
-body:has(.product-grid) .qty-control button { width: 27px; height: 27px; border-radius: 50%; color: var(--primary); font-weight: 800; }
-body:has(.product-grid) .checkout-button { min-height: 47px; }
-body:has(.product-grid) .seller-panel { padding: 21px; border-radius: var(--ui-radius); box-shadow: 0 5px 22px rgba(15, 23, 42, .035); }
-body:has(.product-grid) .seller-row { padding: 14px 3px; }
-
-/* Donation: warm campaign panel and tactile, rounded amount selectors. */
-body:has(.donation-panel) .donation-hero { padding: clamp(30px, 5vw, 48px); border-radius: 26px; box-shadow: var(--ui-lift); }
-body:has(.donation-panel) .donation-heart { font-size: 150px; transform: rotate(12deg); }
-body:has(.donation-panel) .donation-panel { padding: clamp(19px, 4vw, 30px); border-radius: 22px; box-shadow: var(--ui-lift); }
-body:has(.donation-panel) .donation-tier { min-height: 105px; border-radius: 19px; box-shadow: 0 4px 14px rgba(15, 23, 42, .035); transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease, background-color .18s ease; }
-body:has(.donation-panel) .donation-tier:hover { transform: translateY(-3px); box-shadow: var(--ui-lift); }
-body:has(.donation-panel) .donation-tier.is-selected { border-width: 2px; box-shadow: 0 0 0 4px rgba(37, 99, 235, .1); }
-body:has(.donation-panel) .donation-tier strong { font-size: 25px; }
-body:has(.donation-panel) .donation-tier span { font-size: 10px; }
-body:has(.donation-panel) .custom-donation input { height: 48px; border-radius: 13px; padding-inline: 15px; }
-body:has(.donation-panel) .donation-submit { min-height: 51px; }
-body:has(.donation-panel) .donation-note { padding-top: 5px; }
-
-@media (max-width: 920px) {
-  body:has(.product-grid) .shop-layout { grid-template-columns: 1fr; }
-  body:has(.product-grid) .cart-panel { position: static; }
+body:has(.product-grid) .product-card p {
+  min-height: 0;
+  overflow: visible;
+  margin: 0;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.55;
+  text-overflow: clip;
+  white-space: normal;
 }
+body:has(.product-grid) .product-card-body > small {
+  overflow: visible;
+  color: var(--muted);
+  font-size: 10px;
+  text-overflow: clip;
+  white-space: normal;
+}
+body:has(.product-grid) .product-card-bottom {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: 8px;
+}
+body:has(.product-grid) .product-card-bottom strong { font-family: 'Manrope', sans-serif; font-size: 18px; }
+body:has(.product-grid) .product-card-bottom .button { min-height: 38px; padding: 0 15px; font-size: 11px; white-space: nowrap; }
+body:has(.product-grid) .product-feedback { margin: 0 15px 13px; }
+body:has(.product-grid) .seller-listings { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr)); gap: 12px; }
+body:has(.product-grid) .seller-row {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px;
+  border: 1px solid var(--ui-line);
+  border-radius: 15px;
+  background: var(--surface);
+}
+body:has(.product-grid) .seller-row > div:first-child { min-width: 0; }
+body:has(.product-grid) .seller-row strong,
+body:has(.product-grid) .seller-row small { display: block; overflow-wrap: anywhere; }
+body:has(.product-grid) .seller-row small { margin-top: 5px; color: var(--muted); font-size: 10px; }
 @media (max-width: 600px) {
-  body:has(.product-grid) .product-grid::before { grid-template-columns: 58px minmax(0, 1fr) 104px; padding-inline: 10px; font-size: 7px; }
-  body:has(.product-grid) .product-card { grid-template-columns: 58px minmax(0, 1fr) 104px; min-height: 104px; }
-  body:has(.product-grid) .product-card > img { width: 42px; height: 42px; margin-left: 8px; }
-  body:has(.product-grid) .product-card-body { grid-template-columns: minmax(0, 1fr) 104px; gap: 3px 6px; padding: 10px 8px; }
-  body:has(.product-grid) .product-card h3 { font-size: 11px; }
-  body:has(.product-grid) .product-card p { font-size: 9px; }
-  body:has(.product-grid) .product-card-bottom { gap: 6px; }
-  body:has(.product-grid) .product-card-bottom strong { font-size: 13px; }
-  body:has(.product-grid) .product-card-bottom .button { min-height: 30px; padding-inline: 10px; font-size: 9px; }
-  body:has(.product-grid) .product-card-body > small { display: none; }
-  body:has(.donation-panel) .donation-tiers { gap: 9px; }
-  body:has(.donation-panel) .donation-tier { min-height: 88px; border-radius: 17px; }
-  body:has(.feed-list) .feed-card { padding: 14px; }
-  body:has(.feed-list) .feed-post-head { flex-wrap: wrap; }
-}
-@media (prefers-reduced-motion: reduce) {
-  body:has(.feed-list) *, body:has(.product-grid) *, body:has(.donation-panel) * { transition-duration: .01ms !important; }
+  body:has(.product-grid) .product-grid { grid-template-columns: repeat(auto-fill, minmax(min(100%, 165px), 1fr)); gap: 10px; }
+  body:has(.product-grid) .product-card > img { height: 145px; }
+  body:has(.product-grid) .product-card-body { gap: 6px; padding: 11px; }
+  body:has(.product-grid) .product-card h3 { font-size: 13px; }
+  body:has(.product-grid) .product-card-bottom { align-items: flex-start; flex-direction: column; }
+  body:has(.product-grid) .product-card-bottom .button { width: 100%; }
+  body:has(.product-grid) .product-feedback { margin-inline: 11px; }
 }
