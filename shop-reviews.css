@@ -10,7 +10,7 @@
 
 .product-feedback[open] .product-feedback-summary::after { content: '−'; }
 
-.product-review-list { display: grid; gap: 8px; padding: 7px 0 10px; }
+.product-review-list { display: grid; max-height: 250px; gap: 8px; overflow-y: auto; overscroll-behavior: contain; padding: 7px 8px 10px 0; }
 
 .product-review { padding: 10px 12px; border-radius: 12px; background: var(--surface-soft); }
 
